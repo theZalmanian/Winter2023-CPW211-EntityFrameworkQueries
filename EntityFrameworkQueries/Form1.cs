@@ -16,11 +16,29 @@ namespace EntityFrameworkQueries
             using ApContext dbContext = new();
 
             // LINQ Method Syntax
-            List<Vendor> allVendors1 = dbContext.Vendors.ToList();
+            List<Vendor> methodVendors = dbContext.Vendors.ToList();
 
             // LINQ Query Syntax
-            List<Vendor> allVendors2 = (from vendor in dbContext.Vendors
+            List<Vendor> queryVendors = (from vendor in dbContext.Vendors
                                         select vendor).ToList();
+        }
+
+        private void BtnSelectAllVendorsInCA_Click(object sender, EventArgs e)
+        {
+            // Select all Vendors located in California, ordered by name ASC
+            using ApContext dbContext = new();
+
+            // LINQ Method Syntax
+            List<Vendor> methodVendors = dbContext.Vendors
+                                            .Where(currVendor => currVendor.VendorState == "CA")
+                                            .OrderBy(currVendor => currVendor.VendorName)
+                                            .ToList();
+
+            // LINQ Query Syntax
+            List<Vendor> queryVendors = (from vendor in dbContext.Vendors
+                                         where vendor.VendorState == "CA"
+                                         orderby vendor.VendorName ascending
+                                         select vendor).ToList();
         }
     }
 }
