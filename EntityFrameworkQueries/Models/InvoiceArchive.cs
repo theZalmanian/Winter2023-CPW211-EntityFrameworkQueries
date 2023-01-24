@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EntityFrameworkQueries;
+namespace EntityFrameworkQueries.Models;
 
 public partial class InvoiceArchive
 {

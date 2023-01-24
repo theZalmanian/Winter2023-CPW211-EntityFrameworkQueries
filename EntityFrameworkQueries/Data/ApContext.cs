@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using EntityFrameworkQueries.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace EntityFrameworkQueries;
+namespace EntityFrameworkQueries.Data;
 
 public partial class ApContext : DbContext
 {
