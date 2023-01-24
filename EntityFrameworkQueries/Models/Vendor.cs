@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace EntityFrameworkQueries.Models;
 
+[DebuggerDisplay("{VendorName}, {VendorState}")]
 public partial class Vendor
 {
     public int VendorId { get; set; }
