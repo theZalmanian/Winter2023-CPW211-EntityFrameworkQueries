@@ -69,20 +69,34 @@ namespace EntityFrameworkQueries
 
         private void BtnMiscQueries_Click(object sender, EventArgs e)
         {
+            // Get a single vendor from the DB
+            getVendor();
+
+            // Get and display the number of invoices in the DB
+            getInvoiceCount();
+        }
+
+        private void getVendor()
+        {
+            // Get a single vendor from the DB
             using ApContext dbContext = new();
 
-            // Get a single vendor from the DB
             Vendor? currVendor = (from vendor in dbContext.Vendors
                                   where vendor.VendorName == "IBM"
                                   select vendor).SingleOrDefault();
 
-            if(currVendor != null)
+            if (currVendor != null)
             {
                 // Display the vendor's name
                 MessageBox.Show(currVendor.VendorName);
             }
+        }
 
+        private void getInvoiceCount()
+        {
             // Get and display the number of invoices in the DB
+            using ApContext dbContext = new();
+
             int invoiceCount = (from invoice in dbContext.Invoices
                                 select invoice).Count();
 
