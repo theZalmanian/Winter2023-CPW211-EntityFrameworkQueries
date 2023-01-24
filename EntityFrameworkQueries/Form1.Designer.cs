@@ -30,6 +30,7 @@
         {
             this.btnSelectAllVendors = new System.Windows.Forms.Button();
             this.btnSelectAllVendorsInCA = new System.Windows.Forms.Button();
+            this.btnSelectSpecificColumns = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSelectAllVendors
@@ -52,11 +53,23 @@
             this.btnSelectAllVendorsInCA.UseVisualStyleBackColor = true;
             this.btnSelectAllVendorsInCA.Click += new System.EventHandler(this.BtnSelectAllVendorsInCA_Click);
             // 
+            // btnSelectSpecificColumns
+            // 
+            this.btnSelectSpecificColumns.Location = new System.Drawing.Point(79, 181);
+            this.btnSelectSpecificColumns.Name = "btnSelectSpecificColumns";
+            this.btnSelectSpecificColumns.Size = new System.Drawing.Size(183, 79);
+            this.btnSelectSpecificColumns.TabIndex = 2;
+            this.btnSelectSpecificColumns.Text = "SELECT VendorName\r\n              , VendorCity\r\n              , VendorState\r\nFROM " +
+    "Vendors\r\n";
+            this.btnSelectSpecificColumns.UseVisualStyleBackColor = true;
+            this.btnSelectSpecificColumns.Click += new System.EventHandler(this.BtnSelectSpecificColumns_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(339, 342);
+            this.ClientSize = new System.Drawing.Size(349, 342);
+            this.Controls.Add(this.btnSelectSpecificColumns);
             this.Controls.Add(this.btnSelectAllVendorsInCA);
             this.Controls.Add(this.btnSelectAllVendors);
             this.Name = "Form1";
@@ -69,5 +82,6 @@
 
         private Button btnSelectAllVendors;
         private Button btnSelectAllVendorsInCA;
+        private Button btnSelectSpecificColumns;
     }
 }
