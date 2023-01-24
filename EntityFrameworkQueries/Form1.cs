@@ -81,6 +81,12 @@ namespace EntityFrameworkQueries
                 // Display the vendor's name
                 MessageBox.Show(currVendor.VendorName);
             }
+
+            // Get and display the number of invoices in the DB
+            int invoiceCount = (from invoice in dbContext.Invoices
+                                select invoice).Count();
+
+            MessageBox.Show($"There are {invoiceCount} invoices in the AP database");
         }
     }
 
