@@ -1,5 +1,6 @@
 using EntityFrameworkQueries.Data;
 using EntityFrameworkQueries.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Text;
 
 namespace EntityFrameworkQueries
@@ -53,7 +54,8 @@ namespace EntityFrameworkQueries
                                                   VendorName = vendor.VendorName,
                                                   VendorCity = vendor.VendorCity,
                                                   VendorState = vendor.VendorState
-                                               }).ToList();
+                                               }
+                                            ).ToList();
 
             // Display vendors
             StringBuilder displayString = new();
@@ -63,6 +65,22 @@ namespace EntityFrameworkQueries
             }
 
             MessageBox.Show(displayString.ToString());
+        }
+
+        private void BtnMiscQueries_Click(object sender, EventArgs e)
+        {
+            using ApContext dbContext = new();
+
+            // Get a single vendor from the DB
+            Vendor? currVendor = (from vendor in dbContext.Vendors
+                                  where vendor.VendorName == "IBM"
+                                  select vendor).SingleOrDefault();
+
+            if(currVendor != null)
+            {
+                // Display the vendor's name
+                MessageBox.Show(currVendor.VendorName);
+            }
         }
     }
 
