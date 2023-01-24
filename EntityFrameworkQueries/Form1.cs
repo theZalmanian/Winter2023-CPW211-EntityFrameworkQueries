@@ -71,7 +71,7 @@ namespace EntityFrameworkQueries
         private void BtnMiscQueries_Click(object sender, EventArgs e)
         {
             // Get a single vendor from the DB
-            getVendor();
+            getVendor("IBM");
 
             // Get and display the number of invoices in the DB
             getInvoiceCount();
@@ -80,13 +80,13 @@ namespace EntityFrameworkQueries
             doesVendorExistIn("WA");
         }
 
-        private void getVendor()
+        private static void getVendor(string vendorName)
         {
             // Get a single vendor from the DB
             using ApContext dbContext = new();
 
             Vendor? currVendor = (from vendor in dbContext.Vendors
-                                  where vendor.VendorName == "IBM"
+                                  where vendor.VendorName == vendorName
                                   select vendor).SingleOrDefault();
 
             if (currVendor != null)
@@ -96,7 +96,7 @@ namespace EntityFrameworkQueries
             }
         }
 
-        private void getInvoiceCount()
+        private static void getInvoiceCount()
         {
             // Get and display the number of invoices in the DB
             using ApContext dbContext = new();
@@ -107,7 +107,7 @@ namespace EntityFrameworkQueries
             MessageBox.Show($"There are {invoiceCount} invoices in the AP database");
         }
 
-        private void doesVendorExistIn(string state)
+        private static void doesVendorExistIn(string state)
         {
             // Check if a vendor exists in the given state
             using ApContext dbContext = new();
