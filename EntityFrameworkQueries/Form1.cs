@@ -1,6 +1,7 @@
 using EntityFrameworkQueries.Data;
 using EntityFrameworkQueries.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using System.Text;
 
 namespace EntityFrameworkQueries
@@ -74,6 +75,9 @@ namespace EntityFrameworkQueries
 
             // Get and display the number of invoices in the DB
             getInvoiceCount();
+
+            // Check if a vendor exists in Washington
+            doesVendorExistIn("WA");
         }
 
         private void getVendor()
@@ -101,6 +105,27 @@ namespace EntityFrameworkQueries
                                 select invoice).Count();
 
             MessageBox.Show($"There are {invoiceCount} invoices in the AP database");
+        }
+
+        private void doesVendorExistIn(string state)
+        {
+            // Check if a vendor exists in the given state
+            using ApContext dbContext = new();
+
+            bool doesExist = (from vendor in dbContext.Vendors
+                              where vendor.VendorState == state
+                              select vendor).Any();
+
+            // Display results
+            if (doesExist)
+            {
+                MessageBox.Show($"A vendor does exist in the state of {state}");
+            }
+
+            else
+            {
+                MessageBox.Show($"A vendor does not exist in the state of {state}");
+            }
         }
     }
 
