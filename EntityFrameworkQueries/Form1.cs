@@ -58,7 +58,7 @@ namespace EntityFrameworkQueries
                                                }
                                             ).ToList();
 
-            // Display vendors
+            // Display Vendors
             StringBuilder displayString = new();
             foreach(VendorLocation vendor in results)
             {
@@ -71,16 +71,16 @@ namespace EntityFrameworkQueries
         private void BtnMiscQueries_Click(object sender, EventArgs e)
         {
             // Get a single vendor from the DB
-            getVendor("IBM");
+            GetVendor("IBM");
 
             // Get and display the number of invoices in the DB
-            getInvoiceCount();
+            GetInvoiceCount();
 
             // Check if a vendor exists in Washington
-            doesVendorExistIn("WA");
+            DoesVendorExistIn("WA");
         }
 
-        private static void getVendor(string vendorName)
+        private static void GetVendor(string vendorName)
         {
             // Get a single vendor from the DB
             using ApContext dbContext = new();
@@ -96,7 +96,7 @@ namespace EntityFrameworkQueries
             }
         }
 
-        private static void getInvoiceCount()
+        private static void GetInvoiceCount()
         {
             // Get and display the number of invoices in the DB
             using ApContext dbContext = new();
@@ -107,7 +107,7 @@ namespace EntityFrameworkQueries
             MessageBox.Show($"There are {invoiceCount} invoices in the AP database");
         }
 
-        private static void doesVendorExistIn(string state)
+        private static void DoesVendorExistIn(string state)
         {
             // Check if a vendor exists in the given state
             using ApContext dbContext = new();
@@ -126,6 +126,37 @@ namespace EntityFrameworkQueries
             {
                 MessageBox.Show($"A vendor does not exist in the state of {state}");
             }
+        }
+
+        private void BtnVendorsAndInvoices_Click(object sender, EventArgs e)
+        {
+            // Get all Vendors and their Invoices
+            using ApContext dbContext = new();
+
+            // Vendors LEFT JOIN Invoices
+            List<Vendor> allVendors = dbContext.Vendors.Include(vendor => vendor.Invoices).ToList();
+
+            // Display Vendors and their invoices
+            StringBuilder results = new();
+
+            // Run through each Vendor
+            foreach (Vendor currVendor in allVendors)
+            {
+                // Display their name
+                results.Append(currVendor.VendorName);
+
+                // Run through all that Vendor's Invoices
+                foreach(Invoice currInvoice in currVendor.Invoices)
+                {
+                    // Display the invoice number
+                    results.Append($", {currInvoice.InvoiceNumber}");
+                }
+
+                // Blank line for spacing
+                results.AppendLine();
+            }
+
+            MessageBox.Show(results.ToString());
         }
     }
 

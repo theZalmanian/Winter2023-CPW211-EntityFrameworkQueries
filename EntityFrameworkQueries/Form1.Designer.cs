@@ -32,6 +32,7 @@
             this.btnSelectAllVendorsInCA = new System.Windows.Forms.Button();
             this.btnSelectSpecificColumns = new System.Windows.Forms.Button();
             this.btnMiscQueries = new System.Windows.Forms.Button();
+            this.btnVendorsAndInvoices = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSelectAllVendors
@@ -75,11 +76,22 @@
             this.btnMiscQueries.UseVisualStyleBackColor = true;
             this.btnMiscQueries.Click += new System.EventHandler(this.BtnMiscQueries_Click);
             // 
+            // btnVendorsAndInvoices
+            // 
+            this.btnVendorsAndInvoices.Location = new System.Drawing.Point(79, 317);
+            this.btnVendorsAndInvoices.Name = "btnVendorsAndInvoices";
+            this.btnVendorsAndInvoices.Size = new System.Drawing.Size(183, 87);
+            this.btnVendorsAndInvoices.TabIndex = 4;
+            this.btnVendorsAndInvoices.Text = "SELECT all Vendors\r\nand all their Invoices\r\n";
+            this.btnVendorsAndInvoices.UseVisualStyleBackColor = true;
+            this.btnVendorsAndInvoices.Click += new System.EventHandler(this.BtnVendorsAndInvoices_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(349, 353);
+            this.ClientSize = new System.Drawing.Size(349, 455);
+            this.Controls.Add(this.btnVendorsAndInvoices);
             this.Controls.Add(this.btnMiscQueries);
             this.Controls.Add(this.btnSelectSpecificColumns);
             this.Controls.Add(this.btnSelectAllVendorsInCA);
@@ -96,5 +108,6 @@
         private Button btnSelectAllVendorsInCA;
         private Button btnSelectSpecificColumns;
         private Button btnMiscQueries;
+        private Button btnVendorsAndInvoices;
     }
 }
